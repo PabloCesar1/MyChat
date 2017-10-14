@@ -4,14 +4,9 @@ var bodyParser = require('body-parser');
 var app = express();
 
 //Cargar rutas
-var user_routes = require('./routes/user');
-
-
+var chat_routes = require('./routes/chat');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-
-//Configurar cabeceras
-
 //Rutas Base
 app.use('/api', user_routes);
 
