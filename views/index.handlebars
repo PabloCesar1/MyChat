@@ -55,13 +55,6 @@
             var socket = io.connect('http://127.0.0.1:4000')
             if (socket != undefined) {
                 console.log('Conected to socket')
-                socket.on('mensaje', function(data){
-                    var newUser = document.createElement('div')
-                    newUser.setAttribute('class', 'newUser')
-                    newUser.style.color = 'blue'
-                    newUser.textContent = data.text
-                    messages.appendChild(newUser)
-                });
                 socket.on('output', function (data) {
                     console.log(data)
                     if (data.length) {
@@ -76,6 +69,14 @@
                         }
                     }
                 })
+                socket.on('mensaje', function(data){
+                    var newUser = document.createElement('div')
+                    newUser.setAttribute('class', 'newUser')
+                    newUser.style.color = 'blue'
+                    newUser.textContent = data.text
+                    messages.appendChild(newUser)
+                });
+
                 // Get Status From Server
                 socket.on('status', function (data) {
                     // get message status
