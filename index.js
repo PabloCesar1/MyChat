@@ -7,13 +7,13 @@ const port = process.env.PORT || 5000
 var Chat = require('./models/chat')
 
 
-mongoose.connect('mongodb://localhost:27017/mychat', (err, res) => {
+mongoose.connect('mongodb://pablo95:passtodb@ds121015.mlab.com:21015/mychat', (err, res) => {
     if (err) {
         throw err;
     } else {
         console.log("La base de datos esta corriendo correctmente");
         //----------------------------------------------------------------
-                                                    //Connect to socket.io
+        //                                        || Connect to socket.io ||
         client.on('connection', (socket) => {
             let chat = Chat
             //Function to send status
