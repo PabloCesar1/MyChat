@@ -9,6 +9,7 @@
   "author": "Pablo España B.",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.16.2",
     "mongodb": "^2.2.33",
     "mongoose": "^4.12.1",
     "socket.io": "^2.0.3"
