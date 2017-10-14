@@ -8,9 +8,10 @@ mongo.connect(url, (err, db) => {
         throw err
     }
     console.log("Connected correctly to server");
+    
     //Connect to socket.io
-    client.on('connection', () => {
-        let chat = db.collection('chat')
+    client.on('connection', (socket) => {
+        let chat = db.collection('chats')
         //Function to send status
         sendStatus = (s) => {
             socket.emit('status', s)
@@ -27,7 +28,7 @@ mongo.connect(url, (err, db) => {
             let name = data.name
             let message = data.message
 
-            if (name == '' || mesage == '') {
+            if (name == '' || message == '') {
                 sendStatus('Nombre y mensaje requeridos')
             } else {
                 chat.insert({ name: name, message: message }, () => {
@@ -40,8 +41,8 @@ mongo.connect(url, (err, db) => {
             }
         })
 
-        socket.on('clear', (data)=>{
-            chat.remove({}, ()=>{
+        socket.on('clear', (data) => {
+            chat.remove({}, () => {
                 socket.emit('Borrados')
             })
         })
