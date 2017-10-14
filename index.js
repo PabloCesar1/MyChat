@@ -24,9 +24,10 @@ mongoose.connect('mongodb://pablo95:passtodb@ds121015.mlab.com:21015/mychat', (e
             chat.find({}, (err, res) => {
                 if (err) {
                     throw err
-                } 
-                socket.emit('output', res)                
-            });
+                }
+                socket.emit('output', res)
+                socket.broadcast.emit('mensaje', {text: 'Un nuevo usuario se ha conectado.'});
+            }).sort({ _id: -1 });
 
             socket.on('input', (data) => {
                 let name = data.name
