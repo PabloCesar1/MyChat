@@ -67,7 +67,7 @@
             }
 
             //Connect to socket.io
-            var socket = io.connect('https://mychat95.herokuapp.com:4000')
+            var socket = io.connect('http://localhost:4000')
             if (socket != undefined) {
                 console.log('Conected to socket')
                 socket.on('output', function(data){
