@@ -12,7 +12,7 @@ mongoose.connect('mongodb://localhost:27017/mychat', (err, res) => {
     } else {
         console.log("La base de datos esta corriendo correctmente");
         app.listen(port, function () {
-            console.log("Api Rest server listening in port" + port);
+            console.log("Api Rest server listening in port " + port);
         });
     }
 });
