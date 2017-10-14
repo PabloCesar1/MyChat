@@ -2,14 +2,15 @@
   "name": "mychat",
   "version": "1.0.0",
   "description": "chat app using mongodb and socket.io",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node index.js"
   },
   "author": "Pablo España B.",
   "license": "MIT",
   "dependencies": {
     "mongodb": "^2.2.33",
+    "mongoose": "^4.12.1",
     "socket.io": "^2.0.3"
   }
 }

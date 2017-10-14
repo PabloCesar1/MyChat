@@ -1,52 +1,18 @@
-const mongo = require('mongodb').MongoClient
-const client = require('socket.io').listen(4000).sockets
-var url = 'mongodb://localhost:27017/mychat'
+'use strict'
+var express = require('express');
+var bodyParser = require('body-parser');
+var app = express();
 
-//Connect to mongodb
-mongo.connect(url, (err, db) => {
-    if (err) {
-        throw err
-    }
-    console.log("Connected correctly to server");
-    
-    //Connect to socket.io
-    client.on('connection', (socket) => {
-        let chat = db.collection('chats')
-        //Function to send status
-        sendStatus = (s) => {
-            socket.emit('status', s)
-        }
-        //Get chats from mongo collection
-        chat.find().limit(100).sort({ _id: 1 }).toArray((err, res) => {
-            if (err) {
-                throw err
-            }
-            socket.emit('output', res)
-        })
+//Cargar rutas
+var user_routes = require('./routes/user');
 
-        socket.on('input', (data) => {
-            let name = data.name
-            let message = data.message
 
-            if (name == '' || message == '') {
-                sendStatus('Nombre y mensaje requeridos')
-            } else {
-                chat.insert({ name: name, message: message }, () => {
-                    client.emit('output', [data])
-                    sendStatus({
-                        message: 'Mensaje enviado',
-                        clear: true
-                    })
-                })
-            }
-        })
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
-        socket.on('clear', (data) => {
-            chat.remove({}, () => {
-                socket.emit('Borrados')
-            })
-        })
+//Configurar cabeceras
 
-    })
+//Rutas Base
+app.use('/api', user_routes);
 
-});
+module.exports = app;
