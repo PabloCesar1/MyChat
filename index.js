@@ -54,7 +54,7 @@ mongoose.connect('mongodb://localhost:27017/mychat', (err, res) => {
 
         })
         //-----------------------------------------------------
-        app.listen(process.env.PORT || 5000, function () {
+        app.listen(process.env.PORT || 3000, function () {
             console.log("Api Rest server listening in port " + port);
         });
     }
