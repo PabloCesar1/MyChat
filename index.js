@@ -3,7 +3,7 @@ const mongo = require('mongodb').MongoClient
 const client = require('socket.io').listen(4000).sockets
 const mongoose = require('mongoose')
 const app = require('./app')
-const port = process.env.PORT || 3977
+const port = process.env.PORT || 5000
 var Chat = require('./models/chat')
 
 
