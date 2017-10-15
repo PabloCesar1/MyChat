@@ -54,9 +54,9 @@ mongoose.connect('mongodb://pablo95:passtodb@ds121015.mlab.com:21015/mychat', (e
 
         })
         //-----------------------------------------------------
-        app.listen(process.env.PORT || 5000, function () {
+        app.listen(process.env.PORT || 3000, function () {
             //Corriendo en el puerto...
-            console.log("Api Rest server listening in port " + 5000);
+            console.log("Api Rest server listening in port " + 3000);
         });
     }
 });
